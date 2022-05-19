@@ -363,6 +363,33 @@ public static class DisableCertValidationCallback {
 }
 
 # @FUNCTION@ ======================================================================================================================
+# Name...........: Encode-URL
+# Description....: HTTP Encode test in URL
+# Parameters.....: Text to encode
+# Return Values..: Encoded HTML URL text
+# =================================================================================================================================
+Function Encode-URL($sText)
+{
+<# 
+.SYNOPSIS 
+	HTTP Encode test in URL
+.DESCRIPTION
+	HTTP Encode test in URL
+.PARAMETER sText
+	The text to encode
+#>
+	if ($sText.Trim() -ne "")
+	{
+		Write-LogMessage -Type Debug -Msg "Returning URL Encode of $sText"
+		return [System.Web.HttpUtility]::UrlEncode($sText)
+	}
+	else
+	{
+		return $sText
+	}
+}
+
+# @FUNCTION@ ======================================================================================================================
 # Name...........: Invoke-Rest
 # Description....: Invoke REST Method
 # Parameters.....: Command method, URI, Header, Body
