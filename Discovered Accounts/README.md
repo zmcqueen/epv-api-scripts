@@ -48,9 +48,12 @@ Get-DiscoveredAccountsReport.ps1 [-PVWAURL] <string> [[-AuthType] <string>] -Det
 	- Example: "-SortBy 'PlatformType asc'" to get ascending sort by PlatformType
 - DiscoveredAccountID
 	- Used with the Details mode, to return all details on a specific Discovered Account
-- CsvPath
+- CSVPath
 	- The CSV Path for the Discovered accounts report
 	- Emitting this parameter will output the report to screen
+- Report
+	- If True, sets the script to output the API response to a CSV report at the location set by CSVPath. If False, outputs the API response to host
+	- Default value: _False_
 - Limit
 	- Limit the results returned by the REST API
 	- Maximum value: _1000_
@@ -66,10 +69,10 @@ Get-DiscoveredAccountsReport.ps1 [-PVWAURL] <string> [[-AuthType] <string>] -Det
 ### Examples
 Reporting all Windows Server Local Discovered Accounts with 'Admin' as a keyword to a CSV file
 ```powershell
-Get-DiscoveredAccountsReport.ps1 -PVWAURL https://PAS.mydomain.com/PasswordVault -List -PlatformType "Windows Server Local" -SearchKeywords "Admin" -AutoNextPage -CSVPath "C:\CyberArk\DiscoveredAccounts\WinServer_Admin_August-2020.csv"
+Get-DiscoveredAccountsReport.ps1 -PVWAURL https://PAS.mydomain.com/PasswordVault -List -PlatformType "Windows Server Local" -SearchKeywords "Admin" -AutoNextPage -CSVPath "C:\CyberArk\DiscoveredAccounts\WinServer_Admin_August-2020.csv" -Report
 ```
 
 Reporting top 100 Enabled, Privileged Discovered Accounts sorted by User name to a CSV file
 ```powershell
-Get-DiscoveredAccountsReport.ps1 -PVWAURL https://PAS.mydomain.com/PasswordVault -List -OnlyEnabledAccounts -OnlyPrivilegedAccounts -SortBy "UserName" -Limit 100 -CSVPath "C:\CyberArk\DiscoveredAccounts\Enabled_Privielged_August-2020.csv"
+Get-DiscoveredAccountsReport.ps1 -PVWAURL https://PAS.mydomain.com/PasswordVault -List -OnlyEnabledAccounts -OnlyPrivilegedAccounts -SortBy "UserName" -Limit 100 -CSVPath "C:\CyberArk\DiscoveredAccounts\Enabled_Privielged_August-2020.csv" -Report
 ```
